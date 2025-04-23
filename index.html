@@ -2,40 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Beautiful Chaos</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="background"></div>
+  <!-- Video Background -->
+  <div class="video-container">
+    <video id="bgVideo" autoplay muted loop>
+      <source id="bgSource" src="video/background.mp4" type="video/mp4" />
+    </video>
+    <audio id="bgAudio" src="audio/ambient.mp3" loop></audio>
+  </div>
 
-  <div class="container">
+  <!-- Snow Canvas -->
+  <canvas id="snow-canvas"></canvas>
+
+  <!-- Poem -->
+  <div class="poem-container">
     <h1>Beautiful Chaos</h1>
-    <p class="byline">A poem for B</p>
-
     <div class="poem">
-      <p>You are the spark in a still sky,</p>
-      <p>The hush before the storm sighs.</p>
-      <p>A quiet that roars, soft but vast—</p>
-      <p>A present that outshines the past.</p>
+      <p>You are a whirlwind wrapped in stardust,</p>
+      <p>A mystery stitched in moonlight.</p>
+      <p>You bloom where silence softly grows,</p>
+      <p>A presence that outshines the past.</p>
 
-      <p>You're beautiful chaos, unrefined,</p>
+      <p>You are beautiful chaos, unrefined,</p>
       <p>The art of a storm in a delicate mind.</p>
-      <p>I watch you spin, break, bloom, and heal—</p>
-      <p>A whirlwind that makes stillness feel.</p>
-
       <p>And even when you pull away,</p>
       <p>I see the moon in your quiet sway.</p>
-      <p>Even in silence, you still speak—</p>
-      <p>In your stillness, you’re never weak.</p>
 
-      <p>You’re a symphony without a score,</p>
-      <p>I’ll listen, love, and ask for more.</p>
+      <p>You walk like poetry spilling over the margins</p>
+      <p>Of a world that’s too loud, too bright, too fast.</p>
+      <p>Yet in your eyes, I find a calm,</p>
+      <p>A universe where I can breathe at last.</p>
+
+      <p>In the chaos of your laughter, I find my peace,</p>
+      <p>A symphony of whispers, a sweet release.</p>
+      <p>In chaos, love still finds its grace—</p>
+      <p>A home inside your quiet space.</p>
     </div>
-
-    <footer>
-      <p>— Always yours, Carrots</p>
-    </footer>
+    <footer><p>— Always yours, Carrots</p></footer>
   </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button id="toggle-theme">Toggle Day/Night</button>
+    <button id="toggle-audio">Play Music</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="snow.js"></script>
 </body>
 </html>
