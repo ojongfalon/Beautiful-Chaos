@@ -138,3 +138,41 @@ body.day-mode .poem-container h1 {
   from { opacity: 0; transform: translateY(-30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* Responsive Styles for Mobile Screens */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+
+  .poem-container {
+    width: 95%;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .poem-container h1 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .poem {
+    font-size: 0.75rem;
+  }
+
+  .controls {
+    bottom: 10px;
+    right: 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .controls button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .video-container video {
+    filter: brightness(40%) blur(0.5px);
+  }
+}
