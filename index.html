@@ -11,11 +11,9 @@
   <div class="video-container">
     <video id="bgVideo" autoplay muted loop>
       <source id="bgSource" src="video/background.mp4" type="video/mp4" />
+      <source id="bgSource" src="video/day.mp4" type="video/mp4" />
     </video>
   </div>
-
-  <!-- Snow Canvas -->
-  <canvas id="snow-canvas"></canvas>
 
   <!-- Poem -->
   <div class="poem-container">
@@ -44,23 +42,19 @@
     <footer><p>— Always yours, Carrots</p></footer>
   </div>
 
+  <audio id="bgAudio" loop>
+    <source src="audio/ambient.mp3" type="audio/mpeg">
+    <source src="audio/ambient.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+
   <!-- Controls -->
   <div class="controls">
     <button id="toggle-theme">Toggle Day/Night</button>
     <button id="toggle-audio">Play Music</button>
   </div>
 
-  <!-- Audio -->
-  <div class="audio">
-    <audio id="bgAudio" loop>
-      <source src="audio/ambient.mp3" type="audio/mpeg">
-      <source src="audio/ambient.ogg" type="audio/ogg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
   <!-- Scripts -->
   <script src="script.js"></script>
-  <script src="snow.js"></script>
 </body>
 </html>
