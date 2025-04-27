@@ -10,8 +10,8 @@ const poemContainer = document.getElementById('poem-container');
 let isDay = false;
 let isAudioPlaying = false;
 
-  // Theme Toggle
-  themeBtn.addEventListener('click', () => {
+// Theme Toggle
+themeBtn.addEventListener('click', () => {
   isDay = !isDay;
   body.classList.toggle('day-mode', isDay);
 
@@ -22,44 +22,44 @@ let isAudioPlaying = false;
     console.error('Video playback failed:', err);
   });
 
-   // Apply transition effect to the poem
-   console.log('Hiding poem...')
-   poemContainer.classList.remove('visible'); // Hide the poem
-   video.oncanplay = () => {
-   console.log('showing poem...')
-   poemContainer.classList.add('visible');
-   };
- });
+  // Apply transition effect to the poem
+  console.log('Hiding poem...')
+  poemContainer.classList.remove('visible'); // Hide the poem
+  
+  // Wait for video to be ready before showing poem again
+  video.oncanplay = () => {
+    console.log('showing poem...')
+    setTimeout(() => {
+      poemContainer.classList.add('visible');
+    }, 300); // Short delay for better visual transition
+  };
+});
 
-  // Audio Toggle
-  audioBtn.addEventListener('click', () => {
-    if (isAudioPlaying) {
-      audio.pause();
-      audioBtn.textContent = 'Play Music';
-    } else {
-      audio.play().catch((err) => {
-        console.error('Audio playback failed:', err);
-      });
-      audioBtn.textContent = 'Pause Music';
-    }
-    isAudioPlaying = !isAudioPlaying;
-  });
-  // Play or pause audio based on theme
-  if (isDay) {
-    audio.pause(); // Pause audio during the day
+// Audio Toggle
+audioBtn.addEventListener('click', () => {
+  if (isAudioPlaying) {
+    audio.pause();
+    audioBtn.textContent = 'Play Music';
   } else {
     audio.play().catch((err) => {
       console.error('Audio playback failed:', err);
     });
+    audioBtn.textContent = 'Pause Music';
   }
-  // Video Playback
+  isAudioPlaying = !isAudioPlaying;
+});
+
+// Video Playback
 video.addEventListener('loadedmetadata', () => {
   video.play().catch((err) => {
     console.error('Video playback failed:', err);
   });
 });
 
-// Make sure poem is visible on page load
+// Make sure poem animates in on page load
 document.addEventListener('DOMContentLoaded', () => {
-  poemContainer.classList.add('visible');
+  // Small delay to ensure everything is ready
+  setTimeout(() => {
+    poemContainer.classList.add('visible');
+  }, 500);
 });

@@ -40,29 +40,49 @@ audio {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% + 30px)); /* Start position for animation */
   z-index: 2; /* Ensure it is above the video */
   width: 40%;
   max-width: 700px;
-  padding: 2rem 1rem;
+  max-height: 90vh; /* Maximum height based on viewport */
+  overflow-y: auto; /* Allow scrolling if needed */
+  padding: 2rem 1.5rem;
   text-align: center;
   color: #f5f5f5; /* Default text color */
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.885); /* Make text readable on videos */
-  opacity: 1; /* Ensure it is visible */
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+  opacity: 0; /* Start invisible */
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Smooth transition */
+  
+  /* Frosted glass effect */
+  background: rgba(20, 20, 25, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* For Safari */
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), 
+              0 0 0 1px rgba(255, 255, 255, 0.1),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #poem-container.visible {
   opacity: 1; /* Fully visible */
+  transform: translate(-50%, -50%); /* Final position */
 }
 
 #poem-container h1 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.poem {
+  font-size: calc(0.8rem + 0.4vmin); /* Responsive font size */
+  position: relative;
+  z-index: 2;
 }
 
 .poem p {
-  font-size: 1rem;
   margin: 0.5rem 0;
   line-height: 1.5;
 }
@@ -80,6 +100,9 @@ footer p {
   bottom: 20px;
   right: 20px;
   z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .controls button {
@@ -91,9 +114,118 @@ footer p {
   color: #f5f5f5;
   cursor: pointer;
   backdrop-filter: blur(4px);
-  transition: background 0.3s ease;
+  -webkit-backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .controls button:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Other control elements */
+.audio-controls, .theme-toggle, .day-night-toggle, .music-control {
+  display: none; /* Hide redundant controls initially */
+}
+
+/* Hide scrollbar but keep functionality */
+#poem-container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  #poem-container {
+    width: 60%;
+  }
+  
+  #poem-container h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #poem-container {
+    width: 80%;
+    padding: 1.5rem 1rem;
+  }
+  
+  #poem-container h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .controls {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  html, body {
+    font-size: 16px;
+  }
+  
+  #poem-container {
+    width: 90%;
+    max-height: 80vh;
+    padding: 1rem 0.75rem;
+    /* Reduce blur for better performance on mobile */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  
+  #poem-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .poem {
+    font-size: calc(0.75rem + 0.4vmin);
+  }
+  
+  footer p {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .controls {
+    bottom: 10px;
+    right: 10px;
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .controls button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Handle orientation change on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  #poem-container {
+    max-height: 85vh;
+    padding: 0.75rem;
+  }
+  
+  #poem-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .poem p {
+    margin: 0.3rem 0;
+  }
+  
+  footer p {
+    margin-top: 0.8rem;
+  }
+  
+  .controls {
+    flex-direction: row;
+  }
 }

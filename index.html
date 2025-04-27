@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Beautiful Chaos</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <!-- Video Background -->
-  <video id="bgVideo" autoplay muted loop>
+  <video id="bgVideo" autoplay muted loop playsinline>
     <source id="bgSource" src="video/background.mp4" type="video/mp4" />
     <source src="video/day.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
-  </div>
   
   <!-- Poem -->
   <div id="poem-container">
@@ -31,7 +31,7 @@
       <p>I see the moon in your quiet sway.</p>
 
       <p>You walk like poetry spilling over the margins</p>
-      <p>Of a world that’s too loud, too bright, too fast.</p>
+      <p>Of a world that's too loud, too bright, too fast.</p>
       <p>Yet in your eyes, I find a calm,</p>
       <p>A universe where I can breathe at last.</p>
 
@@ -49,33 +49,10 @@
     <source src="audio/ambient.ogg" type="audio/ogg">
     Your browser does not support the audio element.
   </audio>
-</div>
-
-  <div class="audio-controls">
-    <button id="playAudio">Play</button>
-    <button id="pauseAudio">Pause</button>
-  </div>
-
-  <!-- Theme Toggle -->
-  <div class="theme-toggle">
-    <button id="toggleTheme">Toggle Theme</button>
-  </div>
-
-  <!-- Day/Night Mode -->
-  <div class="day-night-toggle">
-    <button id="dayMode">Day Mode</button>
-    <button id="nightMode">Night Mode</button>
-  </div>
-
-  <!-- Music Control -->
-  <div class="music-control">
-    <button id="playMusic">Play Music</button>
-    <button id="pauseMusic">Pause Music</button>
-  </div>
 
   <!-- Controls -->
   <div class="controls">
-    <button id="toggle-theme">Toggle Day/Night</button>
+    <button id="toggle-theme">Day/Night</button>
     <button id="toggle-audio">Play Music</button>
   </div>
 
