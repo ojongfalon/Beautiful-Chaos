@@ -10,7 +10,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family: 'Playfair Display', serif;
-  background-color: #000;
+  background-color: #000; /* Fallback background color */
   transition: background-color 0.5s ease;
   font-size: 18px; /* Default font size */
 }
@@ -29,6 +29,16 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block; /* Ensure the video is displayed */
+}
+
+/* Audio */
+audio {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1; /* Ensure it is behind the video */
 }
 
 /* Poem Container */
@@ -42,15 +52,22 @@ html, body {
   text-align: center;
   color: #f5f5f5; /* Default text color */
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Make text readable on videos */
+  opacity: 0; /* Ensure it is visible */
+  transform: translateY(20px); /* Reset offset */
+  transition: opacity 0.5s ease-in-out, transform 1s ease-in-out; /* Smooth transition */
 }
 
+.poem-container.visible {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Reset offset */
+}
 .poem-container h1 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
 }
 
 .poem p {
-  font-size: 0.85rem;
+  font-size: 1rem;
   margin: 0.5rem 0;
   line-height: 1.5;
 }
@@ -84,33 +101,4 @@ footer p {
 
 .controls button:hover {
   background: rgba(255, 255, 255, 0.4);
-}
-
-/* Responsive Design for Mobile */
-@media (max-width: 768px) {
-  html, body {
-    font-size: 14px; /* Slightly smaller font size for mobile */
-  }
-
-  .poem-container h1 {
-    font-size: 2rem;
-  }
-
-  .poem p {
-    font-size: 0.9rem;
-  }
-
-  .controls button {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
-/* For night mode (default) */
-.video-container video {
-  filter: brightness(30%) blur(0.3px);
-}
-
-/* For day mode - increase brightness */
-body.day-mode .video-container video {
-  filter: brightness(80%) blur(0.1px);
 }
