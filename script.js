@@ -5,7 +5,7 @@ const source = document.getElementById('bgSource');
 const themeBtn = document.getElementById('toggle-theme');
 const audioBtn = document.getElementById('toggle-audio');
 const audio = document.getElementById('bgAudio'); // Reference the audio element
-const poemContainer = document.getElementById('poemContainer');
+const poemContainer = document.getElementById('poem-container');
 
 let isDay = false;
 let isAudioPlaying = false;
@@ -26,7 +26,6 @@ let isAudioPlaying = false;
    console.log('Hiding poem...')
    poemContainer.classList.remove('visible'); // Hide the poem
    video.oncanplay = () => {
-   poemContainer.classlist.add('visible');   // Show the poem with a transition
    console.log('showing poem...')
    poemContainer.classList.add('visible');
    };
@@ -58,4 +57,9 @@ video.addEventListener('loadedmetadata', () => {
   video.play().catch((err) => {
     console.error('Video playback failed:', err);
   });
+});
+
+// Make sure poem is visible on page load
+document.addEventListener('DOMContentLoaded', () => {
+  poemContainer.classList.add('visible');
 });

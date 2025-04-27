@@ -10,26 +10,20 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family: 'Playfair Display', serif;
-  background-color: #000; /* Fallback background color */
+  background-color: #1b1b1b; /* Fallback background color */
   transition: background-color 0.5s ease;
   font-size: 18px; /* Default font size */
 }
 
 /* Video Background */
-.video-container {
+#bgVideo {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -2; /* Ensure it is behind all content */
-}
-
-.video-container video {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  display: block; /* Ensure the video is displayed */
+  z-index: 0; /* Ensure it is behind all content */
 }
 
 /* Audio */
@@ -42,26 +36,27 @@ audio {
 }
 
 /* Poem Container */
-.poem-container {
-  position: relative;
+#poem-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2; /* Ensure it is above the video */
-  width: 90%;
+  width: 40%;
   max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem 1rem 4rem;
+  padding: 2rem 1rem;
   text-align: center;
   color: #f5f5f5; /* Default text color */
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); /* Make text readable on videos */
-  opacity: 0; /* Ensure it is visible */
-  transform: translateY(20px); /* Reset offset */
-  transition: opacity 0.5s ease-in-out, transform 1s ease-in-out; /* Smooth transition */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.885); /* Make text readable on videos */
+  opacity: 1; /* Ensure it is visible */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* Smooth transition */
 }
 
-.poem-container.visible {
+#poem-container.visible {
   opacity: 1; /* Fully visible */
-  transform: translateY(0); /* Reset offset */
 }
-.poem-container h1 {
+
+#poem-container h1 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
 }
