@@ -10,6 +10,30 @@ const poemContainer = document.getElementById('poem-container');
 let isDay = false;
 let isAudioPlaying = false;
 
+// Enhanced video loading function
+const loadAndPlayVideo = async () => {
+  try {
+    // Force video reload
+    video.load();
+    
+    // Wait for video to be ready
+    await new Promise((resolve, reject) => {
+      video.oncanplay = resolve;
+      video.onerror = reject;
+    });
+    
+    // Attempt to play
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      await playPromise;
+    }
+  } catch (err) {
+    console.error('Video playback failed:', err);
+    // Fallback: Try playing without user interaction
+    video.play().catch(e => console.error('Fallback playback failed:', e));
+  }
+};
+
 // Theme Toggle
 themeBtn.addEventListener('click', () => {
   isDay = !isDay;
@@ -17,10 +41,7 @@ themeBtn.addEventListener('click', () => {
 
   // Swap video source
   source.src = isDay ? 'video/day.mp4' : 'video/background.mp4';
-  video.load();
-  video.play().catch((err) => {
-    console.error('Video playback failed:', err);
-  });
+  loadAndPlayVideo();
 
   // Apply transition effect to the poem
   console.log('Hiding poem...')
@@ -49,17 +70,21 @@ audioBtn.addEventListener('click', () => {
   isAudioPlaying = !isAudioPlaying;
 });
 
-// Video Playback
-video.addEventListener('loadedmetadata', () => {
-  video.play().catch((err) => {
-    console.error('Video playback failed:', err);
-  });
-});
-
-// Make sure poem animates in on page load
+// Initial video load
 document.addEventListener('DOMContentLoaded', () => {
-  // Small delay to ensure everything is ready
+  loadAndPlayVideo();
+  
+  // Make sure poem animates in
   setTimeout(() => {
     poemContainer.classList.add('visible');
   }, 500);
+});
+
+// Handle page visibility changes
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    video.pause();
+  } else {
+    loadAndPlayVideo();
+  }
 });
